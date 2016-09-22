@@ -4,16 +4,18 @@
   "description": "application build boilerplate",
   "main": "index.js",
   "scripts": {
+    "css:compile": "node-sass public/src/css/main.scss -o public/bld/css --output-style compressed --source-map public/bld/css",
+    "css:watch": "nodemon -e scss --watch public/src/css -x 'npm run css:compile -s'",
+    "pretest": "echo '=> Testing API'",
     "test": "mocha test/",
     "posttest": "echo '=> All Tests Passing!'",
-    "server": "http-server ./public/views -p 3000",
-    "prestart": "echo '=> Running Tests' && npm test -s",
-    "start": "npm run server -s"
+    "preserver": "npm run test -s",
+    "server": "nodemon",
+    "start": "npm run server -s && npm run css:watch -s"
   },
   "author": "Sean Villagracia",
   "license": "ISC",
   "dependencies": {
-    "autoprefixer": "^6.4.1",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
     "express": "^4.14.0",
@@ -27,5 +29,7 @@
     "supertest": "^2.0.0",
     "watch": "^0.19.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-sass": "^3.10.0"
+  }
 }

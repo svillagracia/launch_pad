@@ -1,1 +1,4 @@
 node_modules/
+.sass-cache
+public/bld/css
+public/bld/js
